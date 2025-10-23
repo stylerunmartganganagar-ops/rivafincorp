@@ -479,7 +479,7 @@ const Help = () => {
 
         {/* AI Chat Dialog */}
         <Dialog open={isChatOpen} onOpenChange={setIsChatOpen}>
-          <DialogContent className="max-w-md h-[600px] flex flex-col">
+          <DialogContent aria-describedby={undefined} className="max-w-md h-[600px] flex flex-col">
             <DialogHeader>
               <DialogTitle className="flex items-center gap-2">
                 <Bot className="h-5 w-5" />

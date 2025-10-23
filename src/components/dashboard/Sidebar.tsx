@@ -110,7 +110,11 @@ export function Sidebar({ activeTab, onTabChange }: SidebarProps) {
               <Menu className="h-4 w-4" />
             </Button>
           </SheetTrigger>
-          <SheetContent side="left" className="w-72 p-0">
+          <SheetContent
+            side="left"
+            forceMount
+            className="w-72 p-0 max-h-screen overflow-y-auto bg-sidebar text-sidebar-foreground border-sidebar-border data-[state=open]:animate-slide-in-left data-[state=closed]:animate-slide-out-left"
+          >
             <div className="flex flex-col h-full">
               <div className="p-6 border-b border-sidebar-border">
                 <h1 className="text-2xl font-bold text-sidebar-foreground">PayGateway</h1>

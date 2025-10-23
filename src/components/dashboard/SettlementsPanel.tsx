@@ -110,7 +110,7 @@ export function SettlementsPanel({ settlements }: SettlementsPanelProps) {
                 </Badge>
               </div>
               
-              <div className="grid grid-cols-3 gap-4 text-sm">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 text-sm">
                 <div>
                   <p className="text-muted-foreground">Amount</p>
                   <p className="font-semibold">₹{(settlement.amount / 100).toFixed(2)}</p>

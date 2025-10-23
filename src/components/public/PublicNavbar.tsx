@@ -63,7 +63,7 @@ export default function PublicNavbar() {
                 <Menu className="h-5 w-5" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-80">
+            <SheetContent side="right" aria-describedby={undefined} aria-label="Mobile Navigation" className="w-80">
               <div className="flex flex-col gap-4 mt-6">
                 {/* Mobile Logo */}
                 <div className="flex items-center gap-2 pb-4 border-b">

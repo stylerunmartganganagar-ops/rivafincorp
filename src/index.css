@@ -107,3 +107,52 @@ All colors MUST be HSL.
     @apply bg-background text-foreground;
   }
 }
+
+/* Prevent horizontal overflow on small screens */
+html, body, #root {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Make media elements responsive by default */
+img, video, canvas, svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Smooth sidebar close animation */
+[data-radix-popper-content-wrapper] [data-side="left"] {
+  animation-duration: 400ms !important;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Custom slow slide animations for mobile sidebar */
+@keyframes slideInFromLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutToLeft {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+.animate-slide-in-left {
+  animation: slideInFromLeft 0.4s ease-out;
+}
+
+.animate-slide-out-left {
+  animation: slideOutToLeft 0.4s ease-in;
+}

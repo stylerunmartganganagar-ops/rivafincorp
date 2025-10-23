@@ -108,25 +108,21 @@ export default function DashboardHeader({ kycStatus }: { kycStatus?: 'incomplete
 
   return (
     <header className="w-full border-b bg-background">
-      <div className="flex items-center justify-between px-6 py-4">
-        {/* Brand */}
-        <div className="flex items-center gap-2">
+      <div className="relative flex items-center justify-between px-4 py-3 md:px-6 md:py-4">
+        {/* Brand - Centered on mobile */}
+        <div className="flex items-center gap-2 md:justify-start justify-center flex-1 md:flex-none">
           <img
             src="/riva-logo-png_seeklogo-437465-removebg-preview.png"
             alt="Riva Logo"
-            className="h-8 w-8 object-contain"
+            className="h-6 w-6 md:h-8 md:w-8 object-contain"
           />
-          <span className="font-bold text-xl">Rivafincorp</span>
-          <Badge variant="outline" className="ml-2">Dashboard</Badge>
+          <span className="font-bold text-lg md:text-xl">Rivafincorp</span>
+          <Badge variant="outline" className="ml-2 hidden sm:inline-flex">Dashboard</Badge>
         </div>
 
-        {/* Navigation Tabs */}
-        <nav className="flex items-center gap-6">
-        </nav>
-
-        {/* Search & Actions */}
+        {/* Profile Dropdown - Right side */}
         <div className="flex items-center gap-4">
-          <div className="relative w-64">
+          <div className="relative w-64 hidden md:block">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <Input
               placeholder="Search payment products, settings..."
@@ -136,7 +132,7 @@ export default function DashboardHeader({ kycStatus }: { kycStatus?: 'incomplete
             />
           </div>
 
-          <Button variant="ghost" size="sm">
+          <Button variant="ghost" size="sm" className="hidden md:flex">
             <Bell className="h-4 w-4" />
           </Button>
 
