@@ -17,8 +17,10 @@ export default function DashboardLayout({ children, activeTab, onTabChange, kycS
       <div className="flex">
         <Sidebar activeTab={activeTab} onTabChange={onTabChange} />
 
-        <main className="flex-1 ml-64 p-8 pt-20">
-          {children}
+        <main className="flex-1 lg:ml-64 p-4 md:p-6 lg:p-8 pt-16 lg:pt-20">
+          <div className="max-w-7xl mx-auto">
+            {children}
+          </div>
         </main>
       </div>
     </div>

@@ -310,28 +310,30 @@ const Index = () => {
       onTabChange={setActiveTab}
       kycStatus={kycStatus === 'incomplete' ? undefined : kycStatus}
     >
-      <div className="max-w-7xl mx-auto space-y-8">
-          <h2 className="text-3xl font-bold tracking-tight">Dashboard</h2>
+      <div className="max-w-7xl mx-auto space-y-6 md:space-y-8">
+        <div>
+          <h2 className="text-2xl md:text-3xl font-bold tracking-tight">Dashboard</h2>
           <p className="text-muted-foreground">
             Welcome back! Here's an overview of your payment gateway.
           </p>
         </div>
+      </div>
 
-        <DashboardStats stats={stats} />
+      <DashboardStats stats={stats} />
 
-        <div className="grid gap-8 lg:grid-cols-3">
-          <div className="lg:col-span-2">
-            <TransactionTable transactions={transactions} />
-          </div>
-          <div>
-            <SettlementsPanel settlements={settlements} />
-          </div>
+      <div className="grid gap-6 lg:grid-cols-3">
+        <div className="lg:col-span-2">
+          <TransactionTable transactions={transactions} />
         </div>
+        <div>
+          <SettlementsPanel settlements={settlements} />
+        </div>
+      </div>
 
-        <Dialog open={isKycDialogOpen} onOpenChange={setIsKycDialogOpen}>
-          <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
-            <DialogHeader>
-              <DialogTitle className="flex items-center gap-2">
+      <Dialog open={isKycDialogOpen} onOpenChange={setIsKycDialogOpen}>
+        <DialogContent className="max-w-2xl max-h-[90vh] md:max-h-[80vh] overflow-y-auto mx-4">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2 text-lg md:text-xl">
               {kycStep === 'documents' && (
                 <Button
                   variant="ghost"
@@ -344,7 +346,7 @@ const Index = () => {
               )}
               Complete Your KYC
             </DialogTitle>
-            <DialogDescription>
+            <DialogDescription className="text-sm md:text-base">
               {kycStep === 'entity_type'
                 ? 'Please select your business entity type to proceed with KYC verification.'
                 : 'Please upload the required documents for your business entity type.'
@@ -353,18 +355,18 @@ const Index = () => {
           </DialogHeader>
 
           {kycStep === 'entity_type' && (
-            <div className="space-y-4">
+            <div className="space-y-3 md:space-y-4">
               <div className="grid gap-3">
                 {Object.entries(businessEntityTypes).map(([key, entity]) => (
                   <Button
                     key={key}
                     variant="outline"
-                    className="h-auto p-4 justify-start text-left"
+                    className="h-auto p-3 md:p-4 justify-start text-left"
                     onClick={() => handleEntityTypeSelect(key as BusinessEntityType)}
                   >
                     <div>
-                      <div className="font-medium">{entity.name}</div>
-                      <div className="text-sm text-muted-foreground mt-1">
+                      <div className="font-medium text-sm md:text-base">{entity.name}</div>
+                      <div className="text-xs md:text-sm text-muted-foreground mt-1">
                         {entity.documents.length} document{entity.documents.length !== 1 ? 's' : ''} required
                       </div>
                     </div>
@@ -375,67 +377,72 @@ const Index = () => {
           )}
 
           {kycStep === 'documents' && selectedEntityType && (
-            <div className="space-y-6">
-              <div className="bg-muted/50 p-4 rounded-lg">
-                <h3 className="font-medium mb-2">Selected Entity Type: {businessEntityTypes[selectedEntityType].name}</h3>
-                <p className="text-sm text-muted-foreground">
+            <div className="space-y-4 md:space-y-6">
+              <div className="bg-muted/50 p-3 md:p-4 rounded-lg">
+                <h3 className="font-medium mb-2 text-sm md:text-base">Selected Entity Type: {businessEntityTypes[selectedEntityType].name}</h3>
+                <p className="text-xs md:text-sm text-muted-foreground">
                   Please provide your basic information and upload the required documents.
                 </p>
               </div>
 
               {/* Basic Information Section */}
               <div className="space-y-4">
-                <h4 className="font-medium text-sm">Basic Information</h4>
+                <h4 className="font-medium text-sm md:text-base">Basic Information</h4>
                 <div className="grid gap-4 md:grid-cols-2">
                   <div className="space-y-2">
-                    <Label htmlFor="fullName">Full Name *</Label>
+                    <Label htmlFor="fullName" className="text-sm">Full Name *</Label>
                     <Input
                       id="fullName"
                       placeholder="Enter your full name"
                       value={kycFormData.fullName || ''}
                       onChange={(e) => setKycFormData(prev => ({ ...prev, fullName: e.target.value }))}
+                      className="h-10"
                       required
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="email">Email Address *</Label>
+                    <Label htmlFor="email" className="text-sm">Email Address *</Label>
                     <Input
                       id="email"
                       type="email"
                       placeholder={user?.email || 'Enter your email'}
                       value={kycFormData.email ?? ''}
                       onChange={(e) => setKycFormData(prev => ({ ...prev, email: e.target.value }))}
+                      className="h-10"
                       required
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="phone">Phone Number *</Label>
+                    <Label htmlFor="phone" className="text-sm">Phone Number *</Label>
                     <Input
                       id="phone"
                       placeholder="+91 98765 43210"
                       value={kycFormData.phone || ''}
                       onChange={(e) => setKycFormData(prev => ({ ...prev, phone: e.target.value }))}
+                      className="h-10"
                       required
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="businessName">Business Name *</Label>
+                    <Label htmlFor="businessName" className="text-sm">Business Name *</Label>
                     <Input
                       id="businessName"
                       placeholder="Enter business name"
                       value={kycFormData.businessName || ''}
                       onChange={(e) => setKycFormData(prev => ({ ...prev, businessName: e.target.value }))}
+                      className="h-10"
                       required
                     />
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="businessAddress">Business Address *</Label>
+                  <Label htmlFor="businessAddress" className="text-sm">Business Address *</Label>
                   <Input
                     id="businessAddress"
                     placeholder="Enter complete business address"
                     value={kycFormData.businessAddress || ''}
                     onChange={(e) => setKycFormData(prev => ({ ...prev, businessAddress: e.target.value }))}
+                    className="h-10"
                     required
                   />
                 </div>
@@ -443,10 +450,10 @@ const Index = () => {
 
               {/* Document Upload Section */}
               <div className="space-y-4">
-                <h4 className="font-medium text-sm">Required Documents</h4>
+                <h4 className="font-medium text-sm md:text-base">Required Documents</h4>
                 {businessEntityTypes[selectedEntityType].documents.map((doc) => (
                   <div key={doc.id} className="space-y-2">
-                    <Label htmlFor={doc.id} className="flex items-center gap-2">
+                    <Label htmlFor={doc.id} className="flex items-center gap-2 text-sm">
                       {doc.name}
                       {doc.required && <span className="text-destructive">*</span>}
                       {!doc.required && <span className="text-muted-foreground">(Optional)</span>}
@@ -461,7 +468,7 @@ const Index = () => {
                           handleDocumentUpload(doc.id, file);
                         }
                       }}
-                      className="cursor-pointer"
+                      className="cursor-pointer h-10 file:h-10 file:px-3 file:rounded-l-md"
                       required={doc.required}
                     />
                     {kycFormData[doc.id] && (
@@ -473,11 +480,11 @@ const Index = () => {
                 ))}
               </div>
 
-              <div className="flex justify-end gap-2 pt-4 border-t">
-                <Button variant="outline" onClick={handleBackToEntityType}>
+              <div className="flex flex-col sm:flex-row justify-end gap-2 pt-4 border-t">
+                <Button variant="outline" onClick={handleBackToEntityType} className="w-full sm:w-auto">
                   Back
                 </Button>
-                <Button onClick={handleDocumentsSubmit}>
+                <Button onClick={handleDocumentsSubmit} className="w-full sm:w-auto">
                   Submit KYC Documents
                 </Button>
               </div>

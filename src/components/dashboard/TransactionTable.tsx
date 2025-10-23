@@ -83,60 +83,116 @@ export function TransactionTable({ transactions }: TransactionTableProps) {
         </div>
       </CardHeader>
       <CardContent>
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>Transaction ID</TableHead>
-              <TableHead>Customer</TableHead>
-              <TableHead>Method</TableHead>
-              <TableHead>Amount</TableHead>
-              <TableHead>Status</TableHead>
-              <TableHead>Date</TableHead>
-              <TableHead>Net Amount</TableHead>
-              <TableHead>Actions</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {transactions.map((txn) => (
-              <TableRow key={txn.id}>
-                <TableCell className="font-mono text-sm">{txn.id}</TableCell>
-                <TableCell>
+        {/* Desktop Table View */}
+        <div className="hidden md:block">
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Transaction ID</TableHead>
+                <TableHead>Customer</TableHead>
+                <TableHead>Method</TableHead>
+                <TableHead>Amount</TableHead>
+                <TableHead>Status</TableHead>
+                <TableHead>Date</TableHead>
+                <TableHead>Net Amount</TableHead>
+                <TableHead>Actions</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {transactions.map((txn) => (
+                <TableRow key={txn.id}>
+                  <TableCell className="font-mono text-sm">{txn.id}</TableCell>
+                  <TableCell>
+                    <div>
+                      <p className="font-medium">{txn.customer}</p>
+                      <p className="text-sm text-muted-foreground">{txn.email}</p>
+                    </div>
+                  </TableCell>
+                  <TableCell>{txn.method}</TableCell>
+                  <TableCell className="font-semibold">
+                    ₹{(txn.amount / 100).toFixed(2)}
+                  </TableCell>
+                  <TableCell>
+                    <Badge variant="outline" className={getStatusColor(txn.status)}>
+                      {txn.status}
+                    </Badge>
+                  </TableCell>
+                  <TableCell className="text-sm text-muted-foreground">
+                    {format(txn.date, 'MMM dd, yyyy HH:mm')}
+                  </TableCell>
+                  <TableCell className="font-semibold text-success">
+                    ₹{(txn.net / 100).toFixed(2)}
+                  </TableCell>
+                  <TableCell>
+                    {txn.status === 'success' && (
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => handleRefundClick(txn)}
+                      >
+                        <RotateCcw className="h-4 w-4 mr-2" />
+                        Refund
+                      </Button>
+                    )}
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
+
+        {/* Mobile Card View */}
+        <div className="md:hidden space-y-4">
+          {transactions.map((txn) => (
+            <Card key={txn.id} className="p-4">
+              <div className="space-y-3">
+                <div className="flex items-center justify-between">
                   <div>
+                    <p className="font-mono text-sm text-muted-foreground">{txn.id}</p>
                     <p className="font-medium">{txn.customer}</p>
                     <p className="text-sm text-muted-foreground">{txn.email}</p>
                   </div>
-                </TableCell>
-                <TableCell>{txn.method}</TableCell>
-                <TableCell className="font-semibold">
-                  ₹{(txn.amount / 100).toFixed(2)}
-                </TableCell>
-                <TableCell>
                   <Badge variant="outline" className={getStatusColor(txn.status)}>
                     {txn.status}
                   </Badge>
-                </TableCell>
-                <TableCell className="text-sm text-muted-foreground">
-                  {format(txn.date, 'MMM dd, yyyy HH:mm')}
-                </TableCell>
-                <TableCell className="font-semibold text-success">
-                  ₹{(txn.net / 100).toFixed(2)}
-                </TableCell>
-                <TableCell>
-                  {txn.status === 'success' && (
+                </div>
+
+                <div className="grid grid-cols-2 gap-4 text-sm">
+                  <div>
+                    <p className="text-muted-foreground">Method</p>
+                    <p className="font-medium">{txn.method}</p>
+                  </div>
+                  <div>
+                    <p className="text-muted-foreground">Date</p>
+                    <p>{format(txn.date, 'MMM dd, yyyy HH:mm')}</p>
+                  </div>
+                  <div>
+                    <p className="text-muted-foreground">Amount</p>
+                    <p className="font-semibold">₹{(txn.amount / 100).toFixed(2)}</p>
+                  </div>
+                  <div>
+                    <p className="text-muted-foreground">Net Amount</p>
+                    <p className="font-semibold text-success">₹{(txn.net / 100).toFixed(2)}</p>
+                  </div>
+                </div>
+
+                {txn.status === 'success' && (
+                  <div className="pt-2 border-t">
                     <Button
                       variant="outline"
                       size="sm"
+                      className="w-full"
                       onClick={() => handleRefundClick(txn)}
                     >
                       <RotateCcw className="h-4 w-4 mr-2" />
-                      Refund
+                      Initiate Refund
                     </Button>
-                  )}
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+                  </div>
+                )}
+              </div>
+            </Card>
+          ))}
+        </div>
       </CardContent>
 
       {/* Refund Dialog */}

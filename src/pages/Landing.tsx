@@ -102,25 +102,25 @@ export default function Landing() {
 
       {/* Hero */}
       <section className="relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 py-20 grid lg:grid-cols-2 gap-10 items-center">
+        <div className="max-w-7xl mx-auto px-4 py-12 md:px-6 md:py-20 grid lg:grid-cols-2 gap-8 md:gap-10 items-center">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
-            <h1 className="text-4xl md:text-5xl font-extrabold leading-tight">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight">
               Trusted Indian Payment Gateway powered by YES Bank
             </h1>
-            <p className="mt-4 text-lg text-muted-foreground">
+            <p className="mt-4 text-base md:text-lg text-muted-foreground">
               Rivafincorp helps thousands of Indian businesses accept payments securely with industry-leading success rates, fast settlements, and world-class support.
             </p>
-            <div className="mt-6 flex gap-3">
-              <Button size="lg" onClick={() => navigate("/auth")}>Get Started</Button>
-              {user && <Button size="lg" variant="outline" onClick={() => navigate("/dashboard")}>View Dashboard</Button>}
+            <div className="mt-6 flex flex-col sm:flex-row gap-3">
+              <Button size="lg" className="w-full sm:w-auto" onClick={() => navigate("/auth")}>Get Started</Button>
+              {user && <Button size="lg" variant="outline" className="w-full sm:w-auto" onClick={() => navigate("/dashboard")}>View Dashboard</Button>}
             </div>
             <div className="mt-6 text-sm text-muted-foreground">
               Associated with trusted partners and brands across India.
             </div>
           </motion.div>
           <motion.div initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7, delay: 0.1 }}>
-            <div className="rounded-xl border p-6 bg-card shadow-sm">
-              <div className="grid grid-cols-2 gap-4">
+            <div className="rounded-xl border p-4 md:p-6 bg-card shadow-sm">
+              <div className="grid grid-cols-2 gap-3 md:gap-4">
                 {[
                   { label: "Success Rate", value: "99.2%" },
                   { label: "Merchants", value: "12,000+" },
@@ -129,7 +129,7 @@ export default function Landing() {
                 ].map((i) => (
                   <Card key={i.label}>
                     <CardHeader className="pb-2"><CardTitle className="text-xs text-muted-foreground">{i.label}</CardTitle></CardHeader>
-                    <CardContent className="text-2xl font-bold">{i.value}</CardContent>
+                    <CardContent className="text-xl md:text-2xl font-bold">{i.value}</CardContent>
                   </Card>
                 ))}
               </div>
@@ -139,10 +139,10 @@ export default function Landing() {
       </section>
 
       {/* Partners */}
-      <section className="py-12 border-t">
-        <div className="max-w-7xl mx-auto px-6">
+      <section className="py-8 md:py-12 border-t">
+        <div className="max-w-7xl mx-auto px-4 md:px-6">
           <div className="text-sm text-muted-foreground mb-4">Associated Partners</div>
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4 items-center">
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-3 md:gap-4 items-center">
             {partners.map((p) => (
               <motion.div key={p} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="text-center text-muted-foreground">
                 {p}
@@ -153,15 +153,15 @@ export default function Landing() {
       </section>
 
       {/* Features */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-2xl font-bold mb-6">Why Rivafincorp</h2>
-          <div className="grid md:grid-cols-3 gap-6">
+      <section className="py-12 md:py-16">
+        <div className="max-w-7xl mx-auto px-4 md:px-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-6">Why Rivafincorp</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
             {["YES Bank Authorized", "Multiple Payment Methods", "Advanced Risk & Disputes", "Instant Refunds", "Powerful Dashboard", "Developer Friendly"].map((f, idx) => (
               <motion.div key={f} initial={{ y: 20, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} transition={{ delay: idx * 0.05 }} viewport={{ once: true }}>
                 <Card>
-                  <CardHeader><CardTitle>{f}</CardTitle></CardHeader>
-                  <CardContent className="text-sm text-muted-foreground">Secure, scalable and built for India-first payments at scale.</CardContent>
+                  <CardHeader><CardTitle className="text-base md:text-lg">{f}</CardTitle></CardHeader>
+                  <CardContent className="text-sm md:text-base text-muted-foreground">Secure, scalable and built for India-first payments at scale.</CardContent>
                 </Card>
               </motion.div>
             ))}
@@ -172,17 +172,17 @@ export default function Landing() {
       
 
       {/* Customer Stories */}
-      <section className="py-16 bg-muted/30">
-        <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-2xl font-bold mb-6">Customer Stories</h2>
-          <div className="grid md:grid-cols-3 gap-6">
+      <section className="py-12 md:py-16 bg-muted/30">
+        <div className="max-w-7xl mx-auto px-4 md:px-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-6">Customer Stories</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
             {stories.map((s) => (
               <Card key={s.name}>
                 <CardHeader>
-                  <CardTitle className="text-base">{s.name}</CardTitle>
-                  <div className="text-xs text-muted-foreground">{s.company}</div>
+                  <CardTitle className="text-base md:text-lg">{s.name}</CardTitle>
+                  <div className="text-xs md:text-sm text-muted-foreground">{s.company}</div>
                 </CardHeader>
-                <CardContent className="text-sm">“{s.quote}”</CardContent>
+                <CardContent className="text-sm md:text-base">"{s.quote}"</CardContent>
               </Card>
             ))}
           </div>
@@ -190,19 +190,19 @@ export default function Landing() {
       </section>
 
       {/* Reviews */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-2xl font-bold mb-6">What businesses say</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <section className="py-12 md:py-16">
+        <div className="max-w-7xl mx-auto px-4 md:px-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-6">What businesses say</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
             {reviews.map((r) => (
               <Card key={r.name}>
                 <CardHeader>
                   <CardTitle className="text-base flex items-center justify-between">
-                    <span>{r.name}</span>
-                    <span className="text-yellow-500">{"★".repeat(r.rating)}</span>
+                    <span className="truncate">{r.name}</span>
+                    <span className="text-yellow-500 text-sm md:text-base">{"★".repeat(r.rating)}</span>
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="text-sm text-muted-foreground">{r.text}</CardContent>
+                <CardContent className="text-sm md:text-base text-muted-foreground">{r.text}</CardContent>
               </Card>
             ))}
           </div>
@@ -214,14 +214,14 @@ export default function Landing() {
       {/* Powerful Features - Stacked Scroll Cards at the End */}
       <section className="pt-0 pb-0">
         {powerfulFeatures.map((f, idx) => (
-          <div key={f.title} className={`flex flex-col overflow-hidden ${idx > 0 ? 'mt-16 md:mt-24' : ''}`}>
+          <div key={f.title} className={`flex flex-col overflow-hidden ${idx > 0 ? 'mt-12 md:mt-16 lg:mt-24' : ''}`}>
             <ContainerScroll
               titleComponent={
                 <>
-                  <h2 className="text-3xl font-semibold text-black dark:text-white">
+                  <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-black dark:text-white">
                     Powerful Features
                     <br />
-                    <span className="text-4xl md:text-[4.5rem] font-bold mt-1 leading-none">
+                    <span className="text-3xl md:text-4xl lg:text-[3rem] xl:text-[4.5rem] font-bold mt-1 leading-none">
                       {f.title}
                     </span>
                   </h2>
@@ -229,8 +229,8 @@ export default function Landing() {
               }
             >
               <div className="h-full w-full">
-                <div className="flex h-full w-full flex-col md:flex-row gap-4 md:gap-6">
-                  <div className="md:w-1/2 h-1/2 md:h-full">
+                <div className="flex h-full w-full flex-col lg:flex-row gap-4 md:gap-6">
+                  <div className="w-full lg:w-1/2 h-48 md:h-64 lg:h-1/2 xl:h-full">
                     <img
                       src={f.img}
                       alt={f.title}
@@ -239,11 +239,11 @@ export default function Landing() {
                       loading="lazy"
                     />
                   </div>
-                  <div className="md:w-1/2 flex flex-col justify-center p-4">
-                    <h3 className="text-2xl md:text-3xl font-bold mb-3">{f.title}</h3>
-                    <p className="text-sm md:text-base text-muted-foreground">{f.desc}</p>
+                  <div className="w-full lg:w-1/2 flex flex-col justify-center p-4 md:p-6">
+                    <h3 className="text-xl md:text-2xl lg:text-3xl font-bold mb-3">{f.title}</h3>
+                    <p className="text-sm md:text-base lg:text-lg text-muted-foreground mb-4">{f.desc}</p>
                     <div className="mt-4">
-                      <Button size="sm" variant="secondary" onClick={() => navigate("/auth")}>
+                      <Button size="lg" className="w-full sm:w-auto" onClick={() => navigate("/auth")}>
                         Get Started
                       </Button>
                     </div>
@@ -256,13 +256,13 @@ export default function Landing() {
       </section>
 
       {/* CTA (Bottom) */}
-      <section className="py-8 border-t">
-        <div className="max-w-7xl mx-auto px-6 text-center">
-          <h2 className="text-3xl font-bold">Ready to grow with Rivafincorp?</h2>
-          <p className="mt-2 text-muted-foreground">Create your account in minutes and start accepting payments today.</p>
-          <div className="mt-6 flex items-center justify-center gap-3">
-            <Button size="lg" onClick={() => navigate("/auth")}>Create Account</Button>
-            {user && <Button size="lg" variant="outline" onClick={() => navigate("/dashboard")}>Explore Dashboard</Button>}
+      <section className="py-12 md:py-16 border-t">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 text-center">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">Ready to grow with Rivafincorp?</h2>
+          <p className="text-base md:text-lg text-muted-foreground mb-6">Create your account in minutes and start accepting payments today.</p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+            <Button size="lg" className="w-full sm:w-auto" onClick={() => navigate("/auth")}>Create Account</Button>
+            {user && <Button size="lg" variant="outline" className="w-full sm:w-auto" onClick={() => navigate("/dashboard")}>Explore Dashboard</Button>}
           </div>
         </div>
       </section>
