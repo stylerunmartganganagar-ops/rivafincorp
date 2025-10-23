@@ -25,7 +25,7 @@ export default function Landing() {
     {
       title: "Private VPA",
       desc: "Issue dedicated VPAs per merchant or customer to simplify reconciliation of UPI payments.",
-      img: "https://images.unsplash.com/photo-1551281044-8b57afe2f10b?q=80&w=1600&auto=format&fit=crop",
+      img: "https://framerusercontent.com/images/SHKxSo0D4IFansuBjWlkLfYDYfo.png?width=1200&height=800",
     },
     {
       title: "0% Fee on UPI",
@@ -40,7 +40,7 @@ export default function Landing() {
     {
       title: "Chargeback Protection",
       desc: "Advanced risk controls, evidence workflows and alerts to reduce disputes and fraud.",
-      img: "https://images.unsplash.com/photo-1555952517-2e8e729e0b44?q=80&w=1600&auto=format&fit=crop",
+      img: "https://clearviewmc.net/wp-content/uploads/2025/08/Chargeback-Protection-Program-1-888x1024.png",
     },
     {
       title: "Detailed Analytics",
